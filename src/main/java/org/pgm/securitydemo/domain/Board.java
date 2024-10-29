@@ -30,8 +30,7 @@ public class Board {
     @JoinColumn(name="user_id")
     private User user;
 
-    public void updateHitcount(Long hitcount) {
+    public void updateHitcount() {
         this.hitcount = this.hitcount+1;
-
     }
 }

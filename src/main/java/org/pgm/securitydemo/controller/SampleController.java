@@ -10,7 +10,7 @@ public class SampleController {
     @GetMapping("/")
     public String home(){
         log.info("home");
-        return "home";
+        return "index";
     }
     //@GetMapping("/user/login")
     public void login(){
