@@ -5,7 +5,7 @@ import org.pgm.securitydemo.domain.Comment;
 import java.util.List;
 
 public interface CommentService {
-    public Comment saveComment(Comment comment);
+    public Comment saveComment(Long board_id, Comment comment);
     public Comment addReply(Long parentId, Comment comment);
     public List<Comment> getReplies(Long parentId);
     public List<Comment> getTopComments(Long board_id);

@@ -27,7 +27,7 @@ public class CustomSecurityConfig {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.disable())
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                .requestMatchers("/login","/user/**", "/","/all").permitAll()
+                .requestMatchers("/login","/user/**", "/","/comments/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/board/**").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated())

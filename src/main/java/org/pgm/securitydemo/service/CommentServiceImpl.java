@@ -20,10 +20,11 @@ public class CommentServiceImpl implements CommentService {
     private final BoardRepository boardRepository;
 
     @Override
-    public Comment saveComment(Comment comment) {
-        Board board = boardRepository.findById(comment.getBoard().getNum()).orElseThrow();
-        board.setReplycount(board.getReplycount() + 1);
+    public Comment saveComment(Long boardId, Comment comment) {
+        Board board = boardRepository.findById(boardId).orElseThrow();
+        //board.setReplycount(board.getReplycount() + 1);
         boardRepository.save(board);
+        comment.setBoard(board);
         Comment savedComment = commentRepository.save(comment);
         return savedComment;
     }
@@ -33,10 +34,10 @@ public class CommentServiceImpl implements CommentService {
         Comment parentComment = commentRepository.findById(parentId).orElseThrow();
         parentComment.addChild(comment);
 
-        Board board = boardRepository.findById(comment.getBoard().getNum()).orElseThrow();
+        Board board = boardRepository.findById(parentComment.getBoard().getNum()).orElseThrow();
         board.setReplycount(board.getReplycount() + 1);
         boardRepository.save(board);
-
+        comment.setBoard(board);
         return commentRepository.save(comment);
     }
 
